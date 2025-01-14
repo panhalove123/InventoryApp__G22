@@ -1,11 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventory App</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="main.js" defer></script>
 </head>
 <body>
-    <h1>Hello world</h1>
+  <div class="container">
+    <div class="info">
+      <h1>Inventory App</h1>
+      <p>
+        Welcome to Inventory App. It will provide <br> features for categorizing items,<br> monitoring stock levels, and generating inventory <br> reports.
+      </p>
+      <ul>
+        <li>✔️ Add, update, and delete products.</li>
+        <li>✔️ Manage inventory efficiently.</li>
+        <li>✔️ Track stock levels for each item.</li>
+      </ul>
+    </div>
+    <div class="form-container">
+      <form id="signInForm">
+        <h1>Sign Up</h1>
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" required>
+        
+        <label for="lastName">Last Name</label>
+        <input type="text" id="lastName" name="lastName" placeholder="Enter your last name" required>
+        
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        
+        <button type="submit" id="submit">Sign Up</button>
+      </form>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+    import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js";
+  
+    // Your Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDlak70ONrqolLN5N4C7DeiTftdt0csvPo",
+      authDomain: "inventorydata-bc32d.firebaseapp.com",
+      databaseURL: "https://inventorydata-bc32d-default-rtdb.firebaseio.com/",
+      projectId: "inventorydata-bc32d",
+      storageBucket: "inventorydata-bc32d.appspot.com",
+      messagingSenderId: "607540255005",
+      appId: "1:607540255005:web:15b9d1a8d819ca06e969f4"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+  
+    // Get reference to the database
+    const db = getDatabase(app);
+  
+    // Handle form submission
+    document.getElementById("submit").addEventListener("click", function (e) {
+      // Prevent default form submission
+      e.preventDefault();
+  
+      // Get input values
+      const firstName = document.getElementById("firstName").value.trim();
+      const lastName = document.getElementById("lastName").value.trim();
+      const email = document.getElementById("email").value.trim();
+  
+      // Validate input fields
+      if (!firstName || !lastName || !email) {
+        alert("Please fill in all fields.");
+        return;
+      }
+  
+      // Save data to Firebase
+      set(ref(db, "user/" + firstName + "_" + lastName), {
+        firstName: firstName,
+        lastName: lastName,
+        email: email
+      })
+        .then(() => {
+          alert("Data saved successfully!");
+          // Clear form fields
+          document.getElementById("signInForm").reset();
+        })
+        .catch((error) => {
+          alert("Error saving data: " + error.message);
+        });
+    });
+  </script>
 </body>
 </html>
