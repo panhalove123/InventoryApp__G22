@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/Css/dashboard.css">
+    <script src="js/dashboard.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"/>
+    <link rel="stylesheet" href="/Css/menu.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <nav>
+              <ul>
+                <li><span class="material-symbols-outlined">home</span><a href="#">Home</a></li>
+                <li><span class="material-symbols-outlined">dataset</span><a href="#">Products</a></li>
+                <li><span class="material-symbols-outlined">tile_small</span><a href="#">Categories</a></li>
+                <li><span class="material-symbols-outlined">stockpot
+                  </span><a href="#">Stocks</a></li>
+                <li><span class="material-symbols-outlined">add</span><a href="#">Add products</a></li>
+              </ul>
+            </nav>
+          </aside>
+          <main class="main-content">
+            <header>
+              <div class="actions">
+                <span class="icon">🔔</span>
+                <span class="icon">⚙️</span>
+              </div>
+            </header>
+            <section class="recent-activity">
+                <h2>Recently Activity</h2>
+                <div class="activity-cards">
+                    <div class="card">New Items
+                        <h4>added every two weeks!</h4>
+                    </div>
+                    <div class="card">New Orders
+                        <h4>Track it. Manage it. Love it!</h4>
+                    </div>
+                    <div class="card">Group
+                        <h4>manage with easy!</h4>
+                    </div>
+                </div>
+            </section>
+            <section class="stats">
+                <div class="card">
+                    <div class="sales-chart">
+                        <h3>Sales</h3>
+                        <div id="salesChart" class="chart">
+                            <!-- Chart bars will be rendered here -->
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="top-items-categories">
+                        <h3>Top Items Categories</h3>
+                        <div id="categoriesList" class="categories-grid">
+                            <div class="category-item">
+                                <img src="https://images.vexels.com/content/142546/preview/tshirt-icon-670446.png" alt="T-shirt">
+                                <p>T-shirt</p>
+                            </div>
+                            <div class="category-item">
+                                <img src="https://cdn-icons-png.flaticon.com/512/864/864727.png" alt="Hat">
+                                <p>Hat</p>
+                            </div>
+                            <div class="category-item">
+                                <img src="https://cdn-icons-png.flaticon.com/512/8/8109.png" alt="Bag">
+                                <p>Bag</p>
+                            </div>
+                            <div class="category-item">
+                                <img src="https://cdn-icons-png.flaticon.com/512/24/24697.png" alt="High heel">
+                                <p>High heel</p>
+                            </div>
+                            <div class="category-item">
+                                <img src="https://cdn-icons-png.flaticon.com/512/3313/3313637.png" alt="Backpack">
+                                <p>Backpack</p>
+                            </div>
+                            <div class="category-item">
+                                <img src="https://static.thenounproject.com/png/1486-200.png" alt="Glasses">
+                                <p>Glasses</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>                       
+            </section>
+            <section class="store-info">
+                <div class="stock-number">
+                    <h3>Stock Number</h3>
+                    <p>Low stock items: <span id="lowStockItems">12</span></p>
+                    <p>Item categories: <span id="itemCategories">8</span></p>
+                </div>
+                <div class="store-list">
+                    <h3>Store List</h3>
+                    <div id="storeList">
+                        <p>Paris, France: 40 employees, 345 items, 77 orders</p>
+                        <p>Rom, Italy: 36 employees, 404 items, 86 orders</p>
+                        <p>Hull, UK: 41 employees, 234 items, 58 orders</p>
+                    </div>
+                </div>
+            </section>
+            
+        </main>
+    </div>
+</body>
+</html>
