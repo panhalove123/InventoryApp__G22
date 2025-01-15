@@ -40,7 +40,7 @@
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
     import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js";
-  
+
     // Your Firebase configuration
     const firebaseConfig = {
       apiKey: "AIzaSyDlak70ONrqolLN5N4C7DeiTftdt0csvPo",
@@ -51,43 +51,43 @@
       messagingSenderId: "607540255005",
       appId: "1:607540255005:web:15b9d1a8d819ca06e969f4"
     };
-  
+
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
-  
-    // Get reference to the database
     const db = getDatabase(app);
-  
+
     // Handle form submission
     document.getElementById("submit").addEventListener("click", function (e) {
       // Prevent default form submission
       e.preventDefault();
-  
+
       // Get input values
       const firstName = document.getElementById("firstName").value.trim();
       const lastName = document.getElementById("lastName").value.trim();
       const email = document.getElementById("email").value.trim();
-  
+
       // Validate input fields
       if (!firstName || !lastName || !email) {
         alert("Please fill in all fields.");
         return;
       }
-  
+
       // Save data to Firebase
       set(ref(db, "user/" + firstName + "_" + lastName), {
         firstName: firstName,
         lastName: lastName,
         email: email
       })
-        .then(() => {
-          alert("Data saved successfully!");
-          // Clear form fields
-          document.getElementById("signInForm").reset();
-        })
-        .catch((error) => {
-          alert("Error saving data: " + error.message);
-        });
+
+      .then(() => {
+        alert("Data saved successfully!");
+        // Redirect to the dashboard page
+        window.location.href = "dashboard.html"; // Replace with the correct path to your dashboard page
+      })
+
+      .catch((error) => {
+        alert("Error saving data: " + error.message);
+      });
     });
   </script>
 </body>
