@@ -1,0 +1,61 @@
+body{
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100%;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    
+}
+.h1categories{
+    font-size: 50px;
+}
+.main-content{
+    width: 50%;
+}
+
+#categories {
+    padding: 20px;
+    text-align: center;
+    
+}
+.category-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 10px;
+    display: inline-block;
+    width: 37%;
+    vertical-align: top;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+.category-card h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.category-card p {
+    font-size: 1em;
+    margin-bottom: 20px;
+}
+
+.category-card button {
+    background-color: #FFC107;
+    color:black;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    border-radius: 20px;
+    height: 50px;
+}
+
+.category-card button:hover {
+    background-color: #9b7900;
+}
