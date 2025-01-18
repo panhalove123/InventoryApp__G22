@@ -38,3 +38,40 @@ th {
     height: 35px;
     text-align: center;
 }
+.in-stock {
+    color: green;
+}
+.out-of-stock {
+    color: red;
+}
+.status-button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    width: 100px;
+    border-radius: 20px;
+}
+.active {
+    background-color: green;
+   
+}
+.low {
+    background-color: red;
+}
+td.status-cell {
+    text-align: center;
+}
+
+td.name-cell, td.stock-cell {
+    text-align: center;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: white;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
