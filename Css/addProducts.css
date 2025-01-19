@@ -33,32 +33,17 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 40%;
+    width: 50%;
   }
   
-  .image-upload {   
-    margin-top: 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-  }
-  
-  .upload-area {
-    border: 2px dashed #ccc;
-    padding: 60px;
-    text-align: center;
-    border-radius: 8px;
-  }
-  
-  .upload-area span {
-    font-size: 2em;
+  .form-left p {
+    font-size: 50px;
   }
   
   .btn {
     background-color: #546E7A;
     color: white;
-    padding: 16px 24px;
+    padding: 18px 26px;
     border: none;
     border-radius: 12px;
     cursor: pointer;
@@ -73,7 +58,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 60%;
+    width: 50%;
   }
   
   form input, form textarea {

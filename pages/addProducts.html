@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="/Css/addProducts.css">
   <link rel="stylesheet" href="/Css/menu.css">
   <script src="main.js" defer></script>
-  <script src="../js/addProducts.js" defer></script>
+  <script type="module" src="../js/addProducts.js" defer></script>
 </head>
 <body>
   <div class="container">
@@ -35,13 +35,7 @@
       <section class="form-section">
         <form id="addProductForm">
           <div class="form-left">
-            <label for="imageUpload" class="image-upload">
-              <div class="upload-area">
-                <span>📂</span>
-                <p>Upload Image</p>
-              </div>
-              <input type="file" id="imageUpload" accept="image/*" hidden>
-            </label>
+            <p>Update Your <br> Products Here</p>
             <button type="button" class="btn" id="addProductButton">Add Product</button>
           </div>
           <div class="form-right">
@@ -66,5 +60,6 @@
       </section>
     </main>
   </div>
+
 </body>
 </html>
