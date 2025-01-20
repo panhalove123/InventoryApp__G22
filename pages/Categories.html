@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="../Css/categories.css">
     <link rel="stylesheet" href="../Css/menu.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poltawski+Nowy:wght@400;500;600&display=swap">
+    <script src="../js/card.js" defer></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js"></script>
+    <script type="module" src="../js/card.js"></script>
 </head>
 <body>
     <div class="container">
@@ -32,39 +37,23 @@
                 <span class="icon">⚙️</span>
               </div>
             </header>
-        <h1 class="h1categories">Categories</h1>
-        <section id="categories">
-        <div class="category-card">
-            <h2>T-shirt</h2>
-            <p>You can see all products about T-shirt</p>
-            <button>See products</button>
-        </div>
-        <div class="category-card">
-            <h2>Bags</h2>
-            <p>You can see all products about Bags</p>
-            <button>See products</button>
-        </div>
-        <div class="category-card">
-            <h2>Hat</h2>
-            <p>You can see all products about Hat</p>
-            <button>See products</button>
-        </div>
-        <div class="category-card">
-            <h2>Pants</h2>
-            <p>You can see all products about Pants</p>
-            <button>See products</button>
-        </div>
-        <div class="category-card">
-            <h2>Dress</h2>
-            <p>You can see all products about Dress</p>
-            <button>See products</button>
-        </div>
-        <div class="category-card">
-            <h2>Shoes</h2>
-            <p>You can see all products about Shoes</p>
-            <button>See products</button>
-        </div>
-    </section>
+            <h1 class="h1categories">Categories</h1>
+            <div class="search-wrapper">
+                <div class="search-container">
+                    <div class="search-icon-wrapper">
+                        <span class="material-symbols-outlined search-icon">search</span>
+                    </div>
+                    <input type="text" id="searchProducts" placeholder="Find your product...">
+                    <div class="search-border"></div>
+                </div>
+            </div>
+            <section id="categories">
+                <!-- Category cards will be added here -->
+            </section>
+            
+            <section id="product-cards">
+                <!-- Product cards will be added here -->
+            </section>
     </main>
 </div>
 </body>
