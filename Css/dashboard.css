@@ -1,4 +1,4 @@
-body{
+body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -6,78 +6,63 @@ body{
     height: 100%;
 }
 
-.container{
+.container {
     display: flex;
     flex-direction: row;
     width: 100%;
-    
 }
-.h1categories{
-    font-size: 50px;
-}
-.main-content{
-    width: 50%;
+
+.main-content {
+    width: 80%;
+    padding: 20px;
 }
 
 header {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     margin-bottom: 20px;
 }
 
-.search-bar input {
-    padding: 10px;
-    width: 500px;
-    border-radius: 10px;
-    border: none;
+.actions {
+    display: flex;
+    gap: 10px;
 }
 
 .recent-activity, .stats, .store-info {
     padding: 20px;
     margin-bottom: 20px;
     border-radius: 5px;
+    background-color: #f9f9f9;
 }
 
 .activity-cards {
     display: flex;
     justify-content: space-between;
+    gap: 10px;
 }
 
 .card {
-    background-color: #f0f0f0;
+    background-color: #ffffff;
     padding: 20px;
     flex: 1;
-    margin: 5px;
     text-align: center;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-
 .stats {
     display: flex;
     gap: 20px;
-    padding: 20px;
 }
-.stats > div {
-    background-color: #ffffff;
-}
+
 .sales-chart, .top-items-categories {
     text-align: center;
 }
 
-.chart {
-    display: flex;
-    align-items: flex-end;
-    height: 100px;
-    margin-top: 10px;
-}
-
-.chart div {
-    width: 10px;
-    margin-right: 5px;
-    background-color: #4caf50;
+.sales-chart canvas {
+    max-width: 100%;
+    height: auto;
 }
 
 .categories-grid {
@@ -110,8 +95,6 @@ header {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
-    padding: 20px;
-    border-radius: 8px;
 }
 
 .store-info > div {
@@ -125,15 +108,10 @@ header {
     margin-bottom: 15px;
     font-size: 1.2em;
     color: #333;
-    padding: 10px;
 }
+
 .stock-number p, .store-list div {
     margin-bottom: 10px;
     font-size: 1em;
     color: #555;
-}
-.user-actions img {
-    width: 20px;
-    height: 20px;
-    margin: 0 5px;
 }
