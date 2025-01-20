@@ -58,5 +58,3 @@ document.getElementById("addProductButton").addEventListener("click", () => {
   });
 });
 
-
-
