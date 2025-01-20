@@ -115,3 +115,57 @@ header {
     font-size: 1em;
     color: #555;
 }
+
+@media screen and (max-width: 1200px) {
+    .activity-cards {
+        flex-wrap: wrap;
+    }
+
+    .card {
+        flex: 0 0 calc(50% - 20px);
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .stats {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .main-content{
+        width: 100%;
+        margin-left: -15px;
+    }
+    .store-info {
+        grid-template-columns: 1fr;
+    }
+
+    .activity-cards {
+        flex-direction: column;
+    }
+
+    .card {
+        flex: 1;
+        margin-bottom: 15px;
+    }
+
+    .categories-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .category-item {
+        width: auto;
+        height: auto;
+    }
+
+    .card {
+        padding: 15px;
+    }
+}

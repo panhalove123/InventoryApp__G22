@@ -21,7 +21,7 @@ body{
 }
 
 #categories {
-    padding: 30px;
+    padding: 20px;
     text-align: center;
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* Changed to exactly 3 columns */
@@ -31,15 +31,65 @@ body{
 }
 
 /* Add media query for responsiveness */
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1200px) {
     #categories {
         grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        padding: 15px;
+        max-width: 900px;
+    }
+
+    .category-card {
+        min-height: 250px;
     }
 }
 
 @media screen and (max-width: 768px) {
+    .main-content{
+        width: 100%; 
+    }
     #categories {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        padding: 10px;
+        max-width: 900px;
+        margin-left: -30px;
+    }
+
+    .category-card {
+        padding: 20px;
+    }
+
+    .category-card h2 {
+        font-size: 1.5em;
+    }
+
+    .category-card p {
+        font-size: 1em;
+    }
+    
+}
+
+@media screen and (max-width: 480px) {
+    #categories {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 10px;
+        padding: 10px;
+        width: 90%;
+    }
+
+    .category-card {
+        padding: 10px;
+    }
+
+    .category-card h2 {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+    }
+
+    .category-card button {
+        padding: 10px 20px;
+        font-size: 0.9em;
     }
 }
 
@@ -363,6 +413,7 @@ body{
     color: #666;
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;

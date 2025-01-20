@@ -108,6 +108,8 @@ form input:focus {
     outline: none;
     border-color: #00796b;
     box-shadow: 0 0 4px rgba(0, 121, 107, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
  button{
     margin-top: 20px;
@@ -129,4 +131,151 @@ form button {
 
 form button:hover {
     background-color: #005d53;
+}
+
+/* Add responsive styles */
+@media screen and (max-width: 1200px) {
+    .container {
+        width: 95%;
+        max-width: 1100px;
+    }
+
+    .info {
+        margin-left: 100px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .container {
+        padding: 20px;
+    }
+
+    .info {
+        margin-left: 50px;
+        margin-top: 100px;
+    }
+
+    .info h1 {
+        font-size: 48px;
+    }
+
+    .form-container {
+        margin-right: 150px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        height: auto;
+        padding: 20px;
+    }
+
+    .info {
+        width: 100%;
+        margin: 20px 0;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .info h1 {
+        font-size: 72px; /* Increased font size */
+        margin-bottom: 20px;
+    }
+
+    /* Hide welcome text and feature list on mobile */
+    .info p,
+    .info ul {
+        display: none;
+    }
+
+    .form-container {
+        width: 90%;
+        margin: 20px auto;
+        padding: 20px;
+    }
+
+    form {
+        width: 100%;
+    }
+
+    form h1 {
+        font-size: 36px;
+        margin: 20px 0;
+    }
+
+    form input {
+        height: 25px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+
+    .info h1 {
+        margin: 20px 35px 10px 5px;
+        font-size: 45px; /* Adjusted for smaller screens but still larger than original */
+    }
+
+    .info p {
+        font-size: 14px;
+    }
+
+    .info ul li {
+        font-size: 16px;
+    }
+
+    form h1 {
+        font-size: 28px;
+    }
+
+    form label {
+        font-size: 16px;
+    }
+
+    form input {
+        font-size: 14px;
+        height: 20px;
+    }
+
+    form button {
+        width: 120px;
+        padding: 15px;
+        font-size: 14px;
+    }
+}
+
+/* Add animation for smooth transitions */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.info, .form-container {
+    animation: slideIn 0.5s ease-out;
+}
+
+/* Improve form responsiveness */
+.form-container {
+    transition: all 0.3s ease;
+}
+
+/* Add touch-friendly improvements */
+@media (hover: none) {
+    form button {
+        padding: 15px 25px;
+        margin-top: 25px;
+    }
+
+    form input {
+        padding: 12px;
+    }
 }

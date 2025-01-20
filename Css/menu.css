@@ -79,7 +79,691 @@ header .actions .icon {
   background-image: linear-gradient(to top, rgb(81, 76, 78) 0%, rgb(160, 200, 221) 100%);
   background-size: 100%;
   -webkit-background-clip: text;
+  background-clip: text;
   -moz-background-clip: text;
   -webkit-text-fill-color: transparent;
   -moz-text-fill-color: transparent;
+}
+
+/* Large Devices (Desktops & Small Laptops) */
+@media screen and (max-width: 1200px) {
+    /* Target devices: Small laptops and large tablets in landscape
+       Common devices: iPad Pro, Small laptops
+       Resolution: 1024px - 1200px */
+    .sidebar {
+        width: 20%;
+    }
+
+    .main-content {
+        width: 80%;
+    }
+
+    header .actions {
+        padding-right: 20px;
+    }
+}
+
+/* Medium Devices (Tablets & Small Desktops) */
+@media screen and (max-width: 992px) {
+    /* Target devices: Tablets in landscape and portrait
+       Common devices: iPad, iPad Air, Nexus 9
+       Resolution: 768px - 992px */
+    .container {
+        position: relative;
+    }
+
+    .sidebar {
+        width: 70px;
+        margin-left: 0;
+        padding: 15px 10px;
+    }
+
+    .sidebar nav ul li {
+        position: relative;
+    }
+
+    .sidebar nav ul li a {
+        display: none;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        cursor: pointer;
+        z-index: 1;
+    }
+
+    .sidebar nav ul li .material-symbols-outlined {
+        font-size: 24px;
+        margin: 0;
+        padding: 8px;
+        position: relative;
+        z-index: 0;
+    }
+
+    .logo {
+        margin-bottom: 30px;
+    }
+
+    .logo img {
+        width: 50px;
+        margin: 0;
+    }
+
+    .logo p {
+        display: none;
+    }
+
+    .main-content {
+        width: calc(100% - 70px);
+    }
+}
+
+/* Small Devices (Mobile phones & Tablets) */
+@media screen and (max-width: 768px) {
+    /* Target devices: Large phones and tablets in portrait
+       Common devices: iPad mini, iPhone Plus/Pro Max, Pixel XL
+       Resolution: 480px - 768px */
+    header .actions {
+        display: none; /* Hide action icons on mobile */
+    }
+
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 0;
+        border-radius: 0;
+        padding: 10px;
+        height: auto;
+        position: fixed;
+        bottom: 0;
+        top: auto;
+        z-index: 1000;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 60px;
+        margin: 0;
+        padding: 5px;
+        border-radius: 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(38, 50, 56, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+    }
+
+    .sidebar nav ul {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        height: 100%;
+    }
+
+    .sidebar nav ul li {
+        margin: 0;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px;
+    }
+
+    .sidebar nav ul li a {
+        margin-left: 0;
+        font-size: 0.8em;
+        display: none;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .sidebar nav ul li .material-symbols-outlined {
+        color: rgba(255, 255, 255, 0.9);
+        transition: all 0.3s ease;
+    }
+
+    .sidebar nav ul li:hover .material-symbols-outlined {
+        color: #FFC107;
+        transform: translateY(-2px);
+    }
+
+    .sidebar nav ul li::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 2px;
+        background: #FFC107;
+        transition: width 0.3s ease;
+    }
+
+    .sidebar nav ul li:hover::after {
+        width: 40%;
+    }
+
+    .logo {
+        padding: 10px;
+        text-align: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 10px;
+        background: #fff;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        z-index: 999;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .logo img {
+        margin: 0;
+        width: 40px;
+        margin: 0;
+    }
+
+    .logo p {
+        margin: 5px 0 0 0;
+        text-align: center;
+        display: block;
+        margin: 0;
+        font-size: 24px;
+    }
+
+    #logout {
+        margin-top: 0;
+    }
+
+    .main-content {
+        padding: 10px;
+        margin-bottom: 60px;
+        width: 100%;
+        margin-top: 70px;
+        margin-bottom: 70px;
+        padding: 15px;
+    }
+}
+
+/* Extra Small Devices (Small Mobile phones) */
+@media screen and (max-width: 480px) {
+    /* Target devices: Most mobile phones
+       Common devices: iPhone SE, iPhone mini, Most Android phones
+       Resolution: 320px - 480px */
+    .sidebar nav ul li .material-symbols-outlined {
+        font-size: 20px;
+        padding: 6px;
+    }
+
+    .logo img {
+        width: 50px;
+        width: 35px;
+    }
+
+    .logo p {
+        font-size: 24px;
+        font-size: 20px;
+    }
+
+    .main-content {
+        padding: 10px;
+    }
+}
+
+/* Add active state for current page */
+.sidebar nav ul li.active .material-symbols-outlined {
+    color: #FFC107;
+}
+
+.sidebar nav ul li.active::after {
+    width: 40%;
+    background: #f0b501;
+}
+
+/* Update active state styling */
+.sidebar nav ul li.active {
+    background: rgba(44, 11, 208, 0.15);
+    border-radius: 5px;
+}
+
+.sidebar nav ul li.active .material-symbols-outlined {
+    color: #ffffff;
+}
+
+.sidebar nav ul li.active a {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+/* Medium Devices (Tablets & Small Desktops) */
+@media screen and (max-width: 992px) {
+    /* Target devices: Tablets in landscape and portrait
+       Common devices: iPad, iPad Air, Nexus 9
+       Resolution: 768px - 992px */
+    .sidebar {
+        width: 70px;
+        margin-left: 0;
+        padding: 15px 10px;
+    }
+
+    .sidebar nav ul li {
+        position: relative;
+    }
+
+    .sidebar nav ul li a {
+        display: block !important;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        cursor: pointer;
+        z-index: 2; /* Increase z-index to ensure clickable */
+    }
+
+    .sidebar nav ul li .material-symbols-outlined {
+        font-size: 24px;
+        margin: 0;
+        padding: 8px;
+        position: relative;
+        z-index: 0;
+    }
+
+    .logo {
+        margin-bottom: 30px;
+    }
+
+    .logo img {
+        width: 50px;
+        margin: 0;
+    }
+
+    .logo p {
+        display: none;
+    }
+
+    .main-content {
+        width: calc(100% - 70px);
+    }
+
+    .sidebar nav ul li.active {
+        background: rgba(255, 193, 7, 0.1);
+    }
+}
+
+/* Small Devices (Mobile phones & Tablets) */
+@media screen and (max-width: 768px) {
+    /* Target devices: Large phones and tablets in portrait
+       Common devices: iPad mini, iPhone Plus/Pro Max, Pixel XL
+       Resolution: 480px - 768px */
+    header .actions {
+        display: none; /* Hide action icons on mobile */
+    }
+
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 0;
+        border-radius: 0;
+        padding: 10px;
+        height: auto;
+        position: fixed;
+        bottom: 0;
+        top: auto;
+        z-index: 1000;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 60px;
+        margin: 0;
+        padding: 5px;
+        border-radius: 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(38, 50, 56, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        background-color: #263238;
+        height: 65px;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+    }
+
+    .sidebar nav {
+        width: 100%;
+    }
+
+    .sidebar nav ul {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+        height: 100%;
+    }
+
+    .sidebar nav ul li {
+        margin: 0;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px;
+        width: 48px; /* Set fixed width for touch target */
+        height: 48px; /* Set fixed height for touch target */
+        width: 60px;
+        height: 60px;
+    }
+
+    .sidebar nav ul li a {
+        margin-left: 0;
+        font-size: 0.8em;
+        display: block !important;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        cursor: pointer;
+        z-index: 2;
+    }
+
+    .sidebar nav ul li .material-symbols-outlined {
+        color: rgba(255, 255, 255, 0.9);
+        transition: all 0.3s ease;
+        font-size: 26px;
+        color: #fff;
+        padding: 8px;
+    }
+
+    .sidebar nav ul li:hover .material-symbols-outlined {
+        color: #FFC107;
+        transform: translateY(-2px);
+    }
+
+    .sidebar nav ul li::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 2px;
+        background: #FFC107;
+        transition: width 0.3s ease;
+        content: attr(data-label);
+        position: absolute;
+        bottom: 2px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 10px;
+        color: #fff;
+        opacity: 0.8;
+        white-space: nowrap;
+    }
+
+    .sidebar nav ul li:hover::after {
+        width: 40%;
+    }
+
+    .sidebar nav ul li:active {
+        transform: scale(0.95);
+    }
+
+    .sidebar nav ul li:active .material-symbols-outlined {
+        color: #FFC107;
+    }
+
+    .logo {
+        padding: 10px;
+        text-align: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 10px;
+        background: #fff;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        z-index: 999;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        height: 60px;
+        background: #fff;
+        padding: 10px 20px;
+    }
+
+    .logo img {
+        margin: 0;
+        width: 40px;
+        margin: 0;
+        width: 35px;
+        height: auto;
+    }
+
+    .logo p {
+        margin: 5px 0 0 0;
+        text-align: center;
+        display: block;
+        margin: 0;
+        font-size: 24px;
+        font-size: 20px;
+        margin: 0 0 0 10px;
+    }
+
+    #logout {
+        margin-top: 0;
+    }
+
+    .main-content {
+        padding: 10px;
+        margin-bottom: 60px;
+        width: 100%;
+        margin-top: 70px;
+        margin-bottom: 70px;
+        padding: 15px;
+    }
+
+    .sidebar nav ul li.active {
+        position: relative;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+    }
+
+    .sidebar nav ul li.active::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 40%;
+        height: 2px;
+        background: #FFC107;
+    }
+
+    .sidebar nav ul li.active .material-symbols-outlined {
+        transform: translateY(-2px);
+        color: #FFC107;
+    }
+}
+
+/* Large Devices (Desktops & Small Laptops) */
+@media screen and (max-width: 1200px) {
+    /* Target devices: Small laptops and large tablets in landscape
+       Common devices: iPad Pro, Small laptops
+       Resolution: 1024px - 1200px */
+    .container {
+        max-width: 100%;
+        padding: 0 15px;
+    }
+    
+    .sidebar {
+        width: 200px;
+        margin-left: -200px;
+    }
+}
+
+/* Small Devices (Mobile phones & Tablets) */
+@media screen and (max-width: 768px) {
+    /* Target devices: Large phones and tablets in portrait
+       Common devices: iPad mini, iPhone Plus/Pro Max, Pixel XL
+       Resolution: 480px - 768px */
+    .container {
+        flex-direction: column;
+    }
+
+    .logo {
+        padding: 10px;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        background: white;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .logo img {
+        width: 40px;
+    }
+
+    .logo p {
+        font-size: 20px;
+    }
+
+    .sidebar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        margin-left: 0;
+        height: 60px;
+        margin-top: 0;
+        padding: 5px;
+        z-index: 999;
+    }
+
+    .main-content {
+        margin-top: 70px;
+        margin-bottom: 70px;
+        width: 100%;
+        padding: 15px;
+    }
+
+    .sidebar nav ul {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .sidebar nav ul li {
+        margin: 0;
+        padding: 8px;
+    }
+
+    .sidebar nav ul li a {
+        font-size: 0;
+    }
+
+    .sidebar nav ul li .material-symbols-outlined {
+        font-size: 24px;
+    }
+}
+
+/* Extra Small Devices (Small Mobile phones) */
+@media screen and (max-width: 480px) {
+    /* Target devices: Most mobile phones
+       Common devices: iPhone SE, iPhone mini, Most Android phones
+       Resolution: 320px - 480px */
+    .main-content {
+        padding: 10px;
+    }
+
+    .logo img {
+        width: 35px;
+    }
+
+    .logo p {
+        font-size: 18px;
+    }
+
+    .sidebar {
+        height: 60px;
+    }
+
+    .sidebar nav ul li {
+        width: 50px;
+        height: 50px;
+    }
+
+    .sidebar nav ul li .material-symbols-outlined {
+        font-size: 22px;
+    }
+
+    /* Adjust label size for smaller screens */
+    .sidebar nav ul li::after {
+        font-size: 9px;
+        bottom: 1px;
+    }
+
+    .logo {
+        height: 50px;
+        padding: 8px 15px;
+    }
+
+    .logo img {
+        width: 30px;
+    }
+
+    .logo p {
+        font-size: 18px;
+    }
+}
+
+/* Touch Device Optimization */
+@media (hover: none) {
+    /* Target devices: All touch screen devices
+       Purpose: Optimize touch interactions */
+    /* Add active state animations */
+    .sidebar nav ul li:active {
+        transform: scale(0.95);
+    }
+
+    .sidebar nav ul li.active::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(255, 193, 7, 0.1);
+        border-radius: 50%;
+        animation: pulseActive 1.5s infinite;
+    }
+
+    @keyframes pulseActive {
+        0% { transform: scale(1); opacity: 1; }
+        50% { transform: scale(1.1); opacity: 0.5; }
+        100% { transform: scale(1); opacity: 1; }
+    }
 }

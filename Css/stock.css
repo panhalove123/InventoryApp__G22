@@ -190,3 +190,47 @@ tbody tr:nth-child(even) {
         transform: translateY(0) scale(1);
     }
 }
+
+@media screen and (max-width: 992px) {
+    .header-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .search-container {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    table {
+        width: 100%;
+        margin-left:-45px;
+    }
+
+    th, td {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .h1stock {
+        font-size: 32px;
+    }
+
+    .status-button {
+        width: 80px;
+        padding: 4px 8px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    .search-container input {
+        padding: 12px 45px 12px 15px;
+        font-size: 14px;
+    }
+}
