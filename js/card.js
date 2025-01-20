@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Show products section, hide categories
     categoriesSection.style.display = 'none';
     productCardsSection.style.display = 'grid';
-    productCardsSection.innerHTML = ''; // Clear existing products
+    productCardsSection.innerHTML = '';
 
     // Reference to products in Firebase
     const productsRef = ref(database, 'products/');
@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // Show no results message if needed
+        // Show no results 
         if (!hasResults) {
             const noResults = document.createElement('div');
             noResults.className = 'no-results';
@@ -190,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Show products section
     productCardsSection.style.display = 'grid';
-    productCardsSection.innerHTML = ''; // Clear existing products
+    productCardsSection.innerHTML = '';
     
     onValue(productsRef, (snapshot) => {
         const products = snapshot.val();
@@ -203,7 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const productCard = document.createElement('div');
                     productCard.className = 'product-card';
                     productCard.setAttribute('data-category', product.category);
-                    productCard.setAttribute('data-id', product.id); // Add ID for deletion
+                    productCard.setAttribute('data-id', product.id); 
                     productCard.innerHTML = `
                         <button class="delete-btn" title="Delete product"></button>
                         <h3 title="${product.name}">${product.name}</h3>
@@ -255,7 +255,6 @@ document.addEventListener('DOMContentLoaded', () => {
     backButton.className = 'back-button';
     backButton.innerHTML = 'Back to Categories';
     backButton.addEventListener('click', () => {
-        // Show categories, hide products
         categoriesSection.style.display = 'grid';
         productCardsSection.style.display = 'none';
         // Remove active state from all category cards
@@ -266,7 +265,6 @@ document.addEventListener('DOMContentLoaded', () => {
     productCardsSection.insertBefore(backButton, productCardsSection.firstChild);
   }
 
-  // Initialize categories on page load
   createCategories();
 
   // Add search functionality to handle category and product filtering

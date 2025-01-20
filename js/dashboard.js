@@ -3,20 +3,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Define default categories and initial stock levels
     const defaultCategories = ['T-shirt', 'Hat', 'Bag', 'Pants', 'Dress', 'Shoes'];
-    const initialStockLevels = [100, 80, 60, 120, 90, 70]; // Example stock levels
+    const initialStockLevels = [100, 80, 60, 120, 90, 70];
 
     // Normalize stock levels by dividing by 10
     const normalizeStockLevels = (stockLevels) => stockLevels.map(stock => Math.round(stock / 10) * 10);
 
     // Define thresholds for low and critical stock (after normalization)
-    const lowStockThreshold = 5; // 50 units (50 / 10 = 5)
-    const criticalStockThreshold = 2; // 20 units (20 / 10 = 2)
+    const lowStockThreshold = 5;
+    const criticalStockThreshold = 2;
 
     // Define colors based on stock levels
     const getColor = (stock) => {
-        if (stock <= criticalStockThreshold) return 'rgba(255, 99, 132, 0.5)'; // Red
-        if (stock <= lowStockThreshold) return 'rgba(255, 206, 86, 0.5)'; // Yellow
-        return 'rgba(75, 192, 192, 0.5)'; // Green
+        if (stock <= criticalStockThreshold) return 'rgba(255, 99, 132, 0.5)'; 
+        if (stock <= lowStockThreshold) return 'rgba(255, 206, 86, 0.5)'; 
+        return 'rgba(75, 192, 192, 0.5)'; 
     };
 
     // Prepare data for the chart
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         label: function (context) {
                             let label = context.dataset.label || '';
                             if (label) label += ': ';
-                            label += context.raw * 10 + ' units'; // Convert back to original units in tooltip
+                            label += context.raw * 10 + ' units'; 
                             return label;
                         }
                     }
