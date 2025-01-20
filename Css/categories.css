@@ -30,18 +30,7 @@ body{
     margin: 0 auto;
 }
 
-/* Add media query for responsiveness */
-@media screen and (max-width: 1024px) {
-    #categories {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
 
-@media screen and (max-width: 768px) {
-    #categories {
-        grid-template-columns: 1fr;
-    }
-}
 
 .category-card {
     background: white;
@@ -674,4 +663,18 @@ body{
 
 .back-button:not(:hover) {
     animation: buttonPulse 2s infinite;
+}
+
+
+/* Add media query for responsiveness */
+@media screen and (max-width: 1024px) {
+    #categories {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #categories {
+        grid-template-columns: 1fr;
+    }
 }
