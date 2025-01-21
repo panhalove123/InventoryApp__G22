@@ -252,8 +252,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Add a "Back to Categories" button
     const backButton = document.createElement('button');
+    backButton.textContent = 'Back';  // Change text from "Back to categories" to just "Back"
     backButton.className = 'back-button';
-    backButton.innerHTML = 'Back to Categories';
     backButton.addEventListener('click', () => {
         categoriesSection.style.display = 'grid';
         productCardsSection.style.display = 'none';

@@ -52,7 +52,7 @@ body{
         grid-template-columns: repeat(2, 1fr);
         gap: 15px;
         padding: 10px;
-        max-width: 900px;
+        max-width: 768px;
         margin-left: -30px;
     }
 
@@ -71,11 +71,14 @@ body{
 }
 
 @media screen and (max-width: 480px) {
+    .main-content{
+        width: 100%;
+    }
     #categories {
         grid-template-columns: repeat(1, 1fr);
         gap: 10px;
         padding: 10px;
-        width: 90%;
+        margin-left: -20px;
     }
 
     .category-card {
@@ -91,6 +94,11 @@ body{
         padding: 10px 20px;
         font-size: 0.9em;
     }
+    /* back button small  */
+    #back-button {
+        font-size: 1em;
+        margin-bottom: 10px;
+    }
 }
 
 .category-card {
@@ -104,7 +112,7 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border: 1px solid rgba(255, 193, 7, 0.1);
+    border: 1px solid rgba(255, 193, 7, 0.1);   
     animation: categoryAppear 0.5s ease-out forwards;
     animation-delay: calc(var(--card-index) * 0.1s);
 }
@@ -663,6 +671,77 @@ body{
     }
 }
 
+/* Update back button styles */
+.back-button {
+    margin-top: 20px;
+    position: absolute;
+    top: -35px;
+    left: 20px;
+    background: #fff;
+    color: #2c3e50;
+    border: 1px solid rgba(255, 193, 7, 0.3);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.back-button::before {
+    content: '←';
+    font-size: 1.2em;
+    transition: transform 0.3s ease;
+}
+
+.back-button:hover {
+    background: #FFC107;
+    color: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 193, 7, 0.2);
+}
+
+/* Responsive back button */
+@media screen and (max-width: 768px) {
+    .back-button {
+        margin-top: 20px;
+        margin-left: -50px;
+        top: -20px;
+        left: 20px;
+        padding: 5px 10px;
+        font-size: 0.80em;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .back-button {
+        margin-top: 20px;
+        top: -25px;
+        left: 10px;
+        padding: 5px 10px;
+        font-size: 0.8em;
+        border-radius: 15px;
+    }
+
+    .back-button::before {
+        font-size: 1em;
+    }
+}
+
+/* Remove existing animations for cleaner look */
+.back-button:not(:hover) {
+    animation: none;
+}
+
+/* Simplified hover effect */
+.back-button:hover::before {
+    transform: translateX(-3px);
+}
+
 /* Add styles for the back button */
 .back-button {
     position: absolute;
@@ -686,6 +765,22 @@ body{
     text-transform: uppercase;
     letter-spacing: 0.5px;
     backdrop-filter: blur(5px);
+    padding: 8px 20px;  /* Reduced padding for shorter text */
+    min-width: 80px;    /* Add minimum width to maintain button shape */
+}
+
+@media screen and (max-width: 768px) {
+    .back-button {
+        padding: 6px 15px;
+        min-width: 70px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .back-button {
+        padding: 5px 12px;
+        min-width: 60px;
+    }
 }
 
 .back-button::before {
