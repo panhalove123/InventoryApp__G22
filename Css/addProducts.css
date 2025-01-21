@@ -52,10 +52,13 @@ body {
     border-radius: 12px;
     cursor: pointer;
     margin-top: 20px;
+    margin-right: 25px;
   }
   
   .btn:hover {
-    background-color: #005f54;
+    background: #263238;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 193, 7, 0.3);
   }
   
   .form-right {

@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   onValue(productsRef, (snapshot) => {
     allProducts = [];
-    tbody.innerHTML = ''; // Clear existing rows
+    tbody.innerHTML = ''; 
     const products = snapshot.val();
     
     if (products) {
