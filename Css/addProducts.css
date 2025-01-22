@@ -169,7 +169,7 @@ body {
     .form-right input, 
     .form-right select, 
     .form-right textarea {
-        width: 90%;
+        width: 80%;
         max-width: none;
     }
 

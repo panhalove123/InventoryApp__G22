@@ -43,15 +43,61 @@
                 <span class="material-symbols-outlined search-icon">search</span>
               </div>
               <div class="excel-controls">
+                <button class="excel-btn add-btn" id="addNewBtn">
+                  <span class="material-symbols-outlined">add</span>
+                  Add New
+                </button>
                 <button class="excel-btn import-btn" onclick="importExcel()">
                   <span class="material-symbols-outlined">upload</span>
-                  Import Excel
+                  Import
                 </button>
                 <button class="excel-btn export-btn" onclick="exportExcel()">
                   <span class="material-symbols-outlined">download</span>
-                  Export Excel
+                  Export
                 </button>
                 <input type="file" id="excelFileInput" accept=".xlsx" style="display: none">
+              </div>
+            </div>
+          </div>
+
+          <!-- Add New Product Modal -->
+          <div id="addProductModal" class="modal">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h2>Add New Product</h2>
+                <span class="close-modal">&times;</span>
+              </div>
+              <div class="modal-body">
+                <form id="addProductForm">
+                  <div class="form-group">
+                    <label for="productName">Product Name</label>
+                    <input type="text" id="productName" required placeholder="Enter product name">
+                  </div>
+                  <div class="form-group">
+                    <label for="category">Category</label>
+                    <select id="category" required>
+                      <option value="">Select Category</option>
+                      <option value="tshirt">T-shirt</option>
+                      <option value="bags">Bags</option>
+                      <option value="hat">Hat</option>
+                      <option value="pants">Pants</option>
+                      <option value="dress">Dress</option>
+                      <option value="shoes">Shoes</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="stockQuantity">Stock Quantity</label>
+                    <input type="number" id="stockQuantity" required min="0" placeholder="Enter quantity">
+                  </div>
+                  <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" rows="4" placeholder="Enter product description"></textarea>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="cancel-btn">Cancel</button>
+                    <button type="submit" class="save-btn">Save</button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>

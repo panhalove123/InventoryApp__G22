@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
-import { getDatabase, ref, onValue, update, remove } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
+import { getDatabase, ref, onValue, update, remove, push, set } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
 import { read, utils, write } from 'https://cdn.sheetjs.com/xlsx-0.19.3/package/xlsx.mjs';
 
 // Firebase configuration
@@ -324,4 +324,62 @@ document.addEventListener('DOMContentLoaded', function() {
     link.click();
     URL.revokeObjectURL(url);
   };
+
+  // Modal functionality
+  const modal = document.getElementById('addProductModal');
+  const addBtn = document.getElementById('addNewBtn');
+  const closeBtn = document.querySelector('.close-modal');
+  const cancelBtn = document.querySelector('.cancel-btn');
+  const addProductForm = document.getElementById('addProductForm');
+
+  // Open modal
+  addBtn.addEventListener('click', () => {
+    modal.style.display = 'block';
+  });
+
+  // Close modal
+  const closeModal = () => {
+    modal.style.display = 'none';
+    addProductForm.reset();
+  };
+
+  closeBtn.addEventListener('click', closeModal);
+  cancelBtn.addEventListener('click', closeModal);
+
+  // Close modal when clicking outside
+  window.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  // Update form submission handler
+  addProductForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const productData = {
+      name: document.getElementById('productName').value,
+      category: document.getElementById('category').value,
+      quantity: parseInt(document.getElementById('stockQuantity').value),
+      description: document.getElementById('description').value || ''
+    };
+
+    try {
+      // Generate a new key for the product
+      const newProductRef = push(ref(database, 'products'));
+      
+      // Save the product data
+      await set(newProductRef, productData);
+      
+      // Close modal and reset form
+      closeModal();
+      addProductForm.reset();
+      
+      // Optional: Show success message
+      alert('Product added successfully!');
+    } catch (error) {
+      console.error('Error adding product:', error);
+      alert('Error adding product. Please try again.');
+    }
+  });
 });
