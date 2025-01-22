@@ -37,9 +37,22 @@
           </header> 
           <div class="header-container">
             <h1 class="h1stock">Stocks Products</h1>
-            <div class="search-container">
-              <input type="text" id="searchProducts" placeholder="Search products...">
-              <span class="material-symbols-outlined search-icon">search</span>
+            <div class="header-controls">
+              <div class="search-container">
+                <input type="text" id="searchProducts" placeholder="Search products...">
+                <span class="material-symbols-outlined search-icon">search</span>
+              </div>
+              <div class="excel-controls">
+                <button class="excel-btn import-btn" onclick="importExcel()">
+                  <span class="material-symbols-outlined">upload</span>
+                  Import Excel
+                </button>
+                <button class="excel-btn export-btn" onclick="exportExcel()">
+                  <span class="material-symbols-outlined">download</span>
+                  Export Excel
+                </button>
+                <input type="file" id="excelFileInput" accept=".xlsx" style="display: none">
+              </div>
             </div>
           </div>
           

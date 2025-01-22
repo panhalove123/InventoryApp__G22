@@ -24,6 +24,53 @@ body{
     margin-top: 25px;
 }
 
+.header-controls {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.excel-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.excel-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.import-btn {
+  background-color: #ebf8ff;
+  color: #3182ce;
+}
+
+.export-btn {
+  background-color: #f0fff4;
+  color: #38a169;
+}
+
+.excel-btn:hover {
+  transform: translateY(-2px);
+}
+
+.import-btn:hover {
+  background-color: #3182ce;
+  color: white;
+}
+
+.export-btn:hover {
+  background-color: #38a169;
+  color: white;
+}
+
 .h1stock{
     font-size: 50px;
     margin: 0;
@@ -159,106 +206,62 @@ td.stock-cell, td.status-cell {
 
 .search-container {
     position: relative;
-    width: 300px; /* Reduced from 400px */
+    width: 350px;
     margin: 0;
     padding: 0;
     display: flex;
     align-items: center;
 }
 
-.search-container::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 30px;
-    padding: 2px;
-    background: linear-gradient(45deg, #FFC107, #FFB300, #FFA000);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.search-container:focus-within::before {
-    opacity: 1;
-}
-
 .search-container input {
     width: 100%;
-    padding: 12px 45px 12px 20px; /* Reduced padding */
-    border-radius: 30px;
-    border: 2px solid #e0e0e0;
-    font-size: 0.9em; /* Reduced font size */
+    padding: 12px 45px 12px 20px;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    font-size: 14px;
+    background: #f8fafc;
+    color: #1a202c;
     transition: all 0.3s ease;
-    font-family: 'Poltawski Nowy', serif;
-    background: #fff;
-    color: #2c3e50;
-    letter-spacing: 0.5px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-}
-
-.search-container input::placeholder {
-    color: #95a5a6;
-    font-style: italic;
-    transition: all 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .search-container input:focus {
     outline: none;
-    border-color: #FFC107;
-    box-shadow: 
-        0 5px 20px rgba(255, 193, 7, 0.15),
-        0 0 0 5px rgba(255, 193, 7, 0.1);
-    transform: translateY(-2px);
+    background: white;
+    border-color: #3182ce;
+    box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.1);
 }
 
-.search-container input:focus::placeholder {
-    opacity: 0.7;
-    transform: translateX(10px);
+.search-container input::placeholder {
+    color: #a0aec0;
 }
 
 .search-container .search-icon {
     position: absolute;
-    right: 25px; /* Adjusted position */
+    right: 15px;
     top: 50%;
     transform: translateY(-50%);
-    color: #666;
-    pointer-events: none;
-    font-size: 20px; /* Reduced icon size */
-}
-
-.search-container .search-icon::after {
-    content: '';
-    position: absolute;
-    bottom: -9px;
-    right: -3px;
-    width: 3px;
-    height: 12px;
-    background: #FFC107;
-    border-radius: 3px;
+    color: #a0aec0;
+    transition: all 0.3s ease;
+    font-size: 20px;
 }
 
 .search-container input:focus + .search-icon {
-    border-color: #FFB300;
-    transform: rotate(-45deg) scale(1.1);
+    color: #3182ce;
 }
 
-.search-container input:focus + .search-icon::after {
-    background: #FFB300;
+/* Remove the old gradient and other search styles */
+.search-container::before,
+.search-container::after,
+.search-container .search-icon::after {
+    display: none;
 }
 
-/* Add a subtle animation when the page loads */
-@keyframes searchAppear {
-    0% {
-        opacity: 0;
-        transform: translateY(-20px) scale(0.95);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
+/* Update responsive styles for search */
+@media screen and (max-width: 768px) {
+    .search-container {
+        width: 100%;
+        max-width: 400px;
     }
 }
 
@@ -365,41 +368,40 @@ td.stock-cell, td.status-cell {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 6px;
-  transition: all 0.2s ease;
+  border-radius: 50%; /* Changed to circle */
+  transition: all 0.3s ease;
+  border: none;
+  margin: 0 4px;
 }
 
 .edit-btn {
-  background-color: #ebf8ff;
+  background-color: rgba(49, 130, 206, 0.1);
   color: #3182ce;
 }
 
 .delete-btn {
-  background-color: #fff5f5;
+  background-color: rgba(229, 62, 62, 0.1);
   color: #e53e3e;
 }
 
 .edit-btn:hover {
   background-color: #3182ce;
   color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(49, 130, 206, 0.2);
 }
 
 .delete-btn:hover {
   background-color: #e53e3e;
   color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(229, 62, 62, 0.2);
 }
 
 .action-cell {
-    display: flex;
-    gap: 8px;
-    justify-content: center;
-}
-
-/* Update empty row styling */
-tbody tr td:empty::before,
-tbody tr td:-moz-only-whitespace::before {
-    content: "-";
-    color: #cbd5e0;
+  display: flex;
+  gap: 4px;
+  justify-content: center;
 }
 
 .edit-modal {
