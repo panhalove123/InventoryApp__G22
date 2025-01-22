@@ -42,21 +42,71 @@
               <span class="material-symbols-outlined search-icon">search</span>
             </div>
           </div>
-            <section id="stocks">
-                <table>
-                    <thead>
-                        <tr>
-                            <th class="name-cell">Name</th>
-                            <th>Category</th>
-                            <th class="stock-cell">Stocks</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Rows with stock data will go here -->
-                    </tbody>
-                </table>
-            </section>
+          
+          <section id="stocks">
+            <table>
+              <thead>
+                <tr>
+                  <th class="name-cell">Name</th>
+                  <th>Category</th>
+                  <th class="stock-cell">Stocks</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Rows with stock data will go here -->
+              </tbody>
+            </table>
+          </section>
+
+          <div class="bottom-stats">
+            <div class="stats-row">
+              <div class="stock-summary">
+                <h3>Stock Summary</h3>
+                <div class="summary-items">
+                  <div class="summary-item">
+                    <span class="material-symbols-outlined">inventory_2</span>
+                    <div>
+                      <p>Total Products</p>
+                      <h4 id="totalProducts">0</h4>
+                    </div>
+                  </div>
+                  <div class="summary-item">
+                    <span class="material-symbols-outlined">warning</span>
+                    <div>
+                      <p>Low Stock Items</p>
+                      <h4 id="lowStockCount">0</h4>
+                    </div>
+                  </div>
+                  <div class="summary-item">
+                    <span class="material-symbols-outlined">check_circle</span>
+                    <div>
+                      <p>In Stock Items</p>
+                      <h4 id="inStockCount">0</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="stats-row">
+              <div class="quick-stats">
+                <div class="stat-card">
+                  <h3>Most Common Category</h3>
+                  <p id="commonCategory">-</p>
+                </div>
+                <div class="stat-card">
+                  <h3>Average Stock Level</h3>
+                  <p id="avgStock">-</p>
+                </div>
+                <div class="stat-card">
+                  <h3>Last Updated</h3>
+                  <p id="lastUpdated">-</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </main>
       </div>
     <script type="module" src="../js/stock.js"></script>
