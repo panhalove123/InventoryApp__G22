@@ -21,6 +21,7 @@ body{
     justify-content: space-between;
     padding: 0 25px;
     margin-bottom: 20px;
+    margin-top: 25px;
 }
 
 .h1stock{
@@ -30,65 +31,135 @@ body{
 
 table {
     width: 95%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
     margin-top: 20px;
     margin-left: 25px;
+    background: white;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 th, td {
-    border: 1px solid #ddd;
-    padding: 12px; /* Increased padding */
+    padding: 16px 20px;
     text-align: left;
-    font-size: 20px; /* Increased font size */
+    font-size: 16px;
+    border: none;
+    border-bottom: 1px solid #edf2f7;
 }
 
 th {
-    background-color: #546E7A;
-    color: white;
-    height: 35px;
-    text-align: center;
+    background-color: white;
+    color: #1a202c;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid #edf2f7;
 }
-.in-stock {
-    color: green;
+
+tbody tr {
+    transition: all 0.2s ease;
+    background: white;
 }
-.out-of-stock {
-    color: red;
+
+tbody tr:hover {
+    background-color: #f8fafc;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
+
+/* Remove the alternating row backgrounds */
+tbody tr:nth-child(odd),
+tbody tr:nth-child(even) {
+    background-color: white;
+}
+
 .status-button {
-    padding: 5px 10px;
+    padding: 6px 12px;
     border: none;
-    border-radius: 5px;
+    border-radius: 20px;
     color: white;
     cursor: pointer;
     width: 100px;
-    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
-.active {
-    background-color: green;
-   
+
+.status-button.active {
+    background: linear-gradient(45deg, #48bb78, #38a169);
+    animation: pulseSuccess 2s infinite;
+    box-shadow: 0 2px 8px rgba(72, 187, 120, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
-.low {
-    background-color: red;
+
+.status-button.active:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(72, 187, 120, 0.6);
 }
+
+.status-button.low {
+    background: linear-gradient(45deg, #ff6b6b, #f56565);
+    animation: pulseWarning 2s infinite;
+    box-shadow: 0 2px 8px rgba(245, 101, 101, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.status-button.low:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(245, 101, 101, 0.6);
+}
+
+/* Add animation keyframes for the pulsing effect */
+@keyframes pulseWarning {
+    0% {
+        box-shadow: 0 0 0 0 rgba(245, 101, 101, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(245, 101, 101, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(245, 101, 101, 0);
+    }
+}
+
+/* Add animation for success state */
+@keyframes pulseSuccess {
+    0% {
+        box-shadow: 0 0 0 0 rgba(72, 187, 120, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(72, 187, 120, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(72, 187, 120, 0);
+    }
+}
+
 td.status-cell {
     text-align: center;
 }
 
-td.name-cell, td.stock-cell {
+td.name-cell {
+    text-align: left; /* Changed from center to left */
+}
+
+/* Add this new style for category cell */
+td:nth-child(2) {
     text-align: center;
 }
 
-tbody tr:nth-child(odd) {
-    background-color: white;
-}
-
-tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
+td.stock-cell, td.status-cell {
+    text-align: center;
 }
 
 .search-container {
     position: relative;
-    width: 400px;
+    width: 300px; /* Reduced from 400px */
     margin: 0;
     padding: 0;
     display: flex;
@@ -117,10 +188,10 @@ tbody tr:nth-child(even) {
 
 .search-container input {
     width: 100%;
-    padding: 16px 55px 16px 25px;
+    padding: 12px 45px 12px 20px; /* Reduced padding */
     border-radius: 30px;
     border: 2px solid #e0e0e0;
-    font-size: 1.1em;
+    font-size: 0.9em; /* Reduced font size */
     transition: all 0.3s ease;
     font-family: 'Poltawski Nowy', serif;
     background: #fff;
@@ -151,12 +222,12 @@ tbody tr:nth-child(even) {
 
 .search-container .search-icon {
     position: absolute;
-    right: 35px;
+    right: 25px; /* Adjusted position */
     top: 50%;
     transform: translateY(-50%);
     color: #666;
     pointer-events: none;
-    font-size: 24px;
+    font-size: 20px; /* Reduced icon size */
 }
 
 .search-container .search-icon::after {
@@ -224,6 +295,12 @@ tbody tr:nth-child(even) {
 }
 
 @media screen and (max-width: 480px) {
+   .header-container h1{
+    margin-left: -50px;
+   }
+    .search-container{
+        margin-left: -55PX;
+    }
     table {
         display: block;
         overflow-x: auto;
@@ -233,4 +310,436 @@ tbody tr:nth-child(even) {
         padding: 12px 45px 12px 15px;
         font-size: 14px;
     }
+}
+
+.pagination-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 25px;
+  margin-top: 20px;
+}
+
+.entries-info {
+  color: #726262;
+  font-size: 20px;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.pagination button {
+  padding: 8px 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.pagination button:disabled {
+  background-color: #eee;
+  cursor: not-allowed;
+}
+
+.pagination button:hover:not(:disabled) {
+  background-color: #f0f0f0;
+}
+
+.pagination span {
+  font-size: 14px;
+}
+
+/* Add styles for the new action buttons and edit modal */
+.action-cell {
+  text-align: center;
+  white-space: nowrap;
+}
+
+.edit-btn, .delete-btn {
+  padding: 8px;
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.edit-btn {
+  background-color: #ebf8ff;
+  color: #3182ce;
+}
+
+.delete-btn {
+  background-color: #fff5f5;
+  color: #e53e3e;
+}
+
+.edit-btn:hover {
+  background-color: #3182ce;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #e53e3e;
+  color: white;
+}
+
+.action-cell {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+/* Update empty row styling */
+tbody tr td:empty::before,
+tbody tr td:-moz-only-whitespace::before {
+    content: "-";
+    color: #cbd5e0;
+}
+
+.edit-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.edit-content {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+.edit-content input,
+.edit-content select,
+.edit-content textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.edit-content textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.edit-content input:focus,
+.edit-content select:focus,
+.edit-content textarea:focus {
+  outline: none;
+  border-color: #2196F3;
+  box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.1);
+}
+
+.edit-content h2 {
+  margin-bottom: 20px;
+}
+
+.edit-content input,
+.edit-content textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.edit-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.edit-buttons button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.edit-buttons button:first-child {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.edit-buttons button:last-child {
+  background-color: #f44336;
+  color: white;
+}
+
+/* Update table cell alignments */
+td.name-cell {
+    text-align: left; /* Keep product name left-aligned */
+
+}
+
+/* Center category, stock, status, and action columns */
+td:nth-child(2), /* Category */
+td.stock-cell,
+td.status-cell,
+th:nth-child(2), /* Category header */
+th.stock-cell,
+th:nth-child(4), /* Status header */
+th:nth-child(5) { /* Action header */
+    text-align: center;
+}
+
+/* Ensure content within these cells is centered */
+td:nth-child(2), 
+td.stock-cell,
+td.status-cell {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+/* Add new styles for stock container, sidebar, and summary */
+.stock-container {
+  display: flex;
+  gap: 20px;
+  margin: 0 25px;
+}
+
+.stock-sidebar {
+  width: 250px;
+  flex-shrink: 0;
+}
+
+.stock-content {
+  flex-grow: 1;
+}
+
+.stock-summary {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+.stock-summary h3 {
+  margin: 0 0 20px 0;
+  color: #1a202c;
+  font-size: 18px;
+}
+
+.summary-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 0;
+  border-bottom: 1px solid #edf2f7;
+}
+
+.summary-item:last-child {
+  border-bottom: none;
+}
+
+.summary-item .material-symbols-outlined {
+  padding: 10px;
+  border-radius: 8px;
+  color: #3182ce;
+  background: #ebf8ff;
+}
+
+.summary-item p {
+  margin: 0;
+  color: #718096;
+  font-size: 14px;
+}
+
+.summary-item h4 {
+  margin: 5px 0 0 0;
+  color: #2d3748;
+  font-size: 24px;
+}
+
+.stock-footer {
+  margin: 30px 25px;
+}
+
+.quick-stats {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.stat-card {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  flex: 1;
+}
+
+.stat-card h3 {
+  margin: 0 0 10px 0;
+  color: #1a202c;
+  font-size: 16px;
+}
+
+.stat-card p {
+  margin: 0;
+  color: #2d3748;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 1200px) {
+  .stock-container {
+    flex-direction: column;
+  }
+
+  .stock-sidebar {
+    width: 100%;
+  }
+
+  .quick-stats {
+    flex-wrap: wrap;
+  }
+
+  .stat-card {
+    min-width: 250px;
+  }
+}
+
+/* Add new styles for stats container and summary items */
+.stats-container {
+  margin: 30px 25px;
+  display: flex;
+  gap: 20px;
+}
+
+.stock-summary {
+  flex: 1;
+  background: white;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+.summary-items {
+  display: flex;
+  gap: 20px;
+}
+
+.summary-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  background: #f8fafc;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.summary-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.quick-stats {
+  flex: 1;
+  display: flex;
+  gap: 20px;
+}
+
+/* Update responsive styles */
+@media screen and (max-width: 1200px) {
+  .stats-container {
+    flex-direction: column;
+  }
+
+  .summary-items {
+    flex-wrap: wrap;
+  }
+
+  .summary-item {
+    min-width: 250px;
+  }
+
+  .quick-stats {
+    flex-wrap: wrap;
+  }
+}
+
+/* Update stats layout */
+.bottom-stats {
+  padding: 25px;
+  margin-top: 20px;
+}
+
+.stats-row {
+  margin-bottom: 20px;
+}
+
+.stats-row:last-child {
+  margin-bottom: 0;
+}
+
+.summary-items {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.summary-item {
+  flex: 1;
+  min-width: 250px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.quick-stats {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.stat-card {
+  flex: 1;
+  min-width: 250px;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Remove any old container styles */
+.stock-container,
+.stats-container {
+  display: none;
 }

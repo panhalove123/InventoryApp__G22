@@ -126,6 +126,9 @@ body {
 }
 
 @media screen and (max-width: 768px) {
+  .form-left p{
+    display: none;
+  }
     .main-content {
         padding: 15px;
     }
