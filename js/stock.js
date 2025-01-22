@@ -1,5 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
 import { getDatabase, ref, onValue, update, remove } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
+import { read, utils, write } from 'https://cdn.sheetjs.com/xlsx-0.19.3/package/xlsx.mjs';
 
 // Firebase configuration
 const firebaseConfig = {
@@ -257,4 +258,70 @@ document.addEventListener('DOMContentLoaded', function() {
     // Update last updated time
     document.getElementById('lastUpdated').textContent = new Date().toLocaleString();
   }
+
+  // Add these functions to handle Excel operations
+  window.importExcel = function() {
+    document.getElementById('excelFileInput').click();
+  };
+
+  document.getElementById('excelFileInput').addEventListener('change', async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    try {
+      const data = await file.arrayBuffer();
+      const workbook = read(data);
+      const worksheet = workbook.Sheets[workbook.SheetNames[0]];
+      const products = utils.sheet_to_json(worksheet);
+
+      // Validate and format the data
+      const formattedProducts = products.map(product => ({
+        name: product.name || '',
+        category: product.category || '',
+        quantity: parseInt(product.quantity) || 0,
+        description: product.description || ''
+      }));
+
+      // Import to Firebase
+      const updates = {};
+      formattedProducts.forEach(product => {
+        const newKey = push(ref(database, 'products')).key;
+        updates[`products/${newKey}`] = product;
+      });
+
+      update(ref(database), updates)
+        .then(() => alert('Products imported successfully!'))
+        .catch(error => alert('Error importing products: ' + error.message));
+    } catch (error) {
+      alert('Error reading Excel file: ' + error.message);
+    }
+
+    e.target.value = ''; // Reset file input
+  });
+
+  window.exportExcel = function() {
+    // Create worksheet from products data
+    const ws = utils.json_to_sheet(allProducts.map(product => ({
+      name: product.name,
+      category: product.category,
+      quantity: product.quantity,
+      description: product.description || ''
+    })));
+
+    // Create workbook and add worksheet
+    const wb = utils.book_new();
+    utils.book_append_sheet(wb, ws, 'Products');
+
+    // Generate Excel file
+    const excelBuffer = write(wb, { bookType: 'xlsx', type: 'array' });
+    
+    // Create blob and download
+    const blob = new Blob([excelBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'inventory_' + new Date().toISOString().split('T')[0] + '.xlsx';
+    link.click();
+    URL.revokeObjectURL(url);
+  };
 });
