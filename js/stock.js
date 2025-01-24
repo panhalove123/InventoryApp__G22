@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const row = document.createElement('tr');
       row.innerHTML = `
         <td class="name-cell">${product.name}</td>
-        <td>${product.category}</td>
+        <td data-category="${product.category}"><span>${product.category}</span></td>
         <td class="stock-cell">${product.quantity}</td>
         <td class="status-cell">
           <button class="status-button ${product.quantity >= 2 ? 'active' : 'low'}">

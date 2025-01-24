@@ -200,6 +200,57 @@ td:nth-child(2) {
     text-align: center;
 }
 
+/* Category styling */
+td:nth-child(2) {
+  text-align: center;
+  font-weight: 500;
+}
+
+td:nth-child(2):not(:empty) {
+  position: relative;
+  padding: 8px 16px;
+}
+
+/* Category badges */
+td:nth-child(2) span {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+/* Category colors */
+td:nth-child(2)[data-category="tshirt"] span {
+  background-color: #E3F2FD;
+  color: #1976D2;
+}
+
+td:nth-child(2)[data-category="bags"] span {
+  background-color: #F3E5F5;
+  color: #7B1FA2;
+}
+
+td:nth-child(2)[data-category="hat"] span {
+  background-color: #E8F5E9;
+  color: #388E3C;
+}
+
+td:nth-child(2)[data-category="pants"] span {
+  background-color: #FFF3E0;
+  color: #F57C00;
+}
+
+td:nth-child(2)[data-category="dress"] span {
+  background-color: #FCE4EC;
+  color: #C2185B;
+}
+
+td:nth-child(2)[data-category="shoes"] span {
+  background-color: #EFEBE9;
+  color: #5D4037;
+}
+
 td.stock-cell, td.status-cell {
     text-align: center;
 }
