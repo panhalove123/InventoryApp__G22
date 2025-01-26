@@ -21,9 +21,11 @@ document.addEventListener('DOMContentLoaded', function() {
   const tbody = document.querySelector('#stocks tbody');
   const productsRef = ref(database, 'products');
   const searchInput = document.getElementById('searchProducts');
+  const categoryFilter = document.getElementById('categoryFilter');
   let allProducts = [];
   let currentPage = 1;
   const itemsPerPage = 8;
+  let currentFilter = '';
 
   onValue(productsRef, (snapshot) => {
     allProducts = [];
@@ -36,28 +38,39 @@ document.addEventListener('DOMContentLoaded', function() {
         ...product,
         id: id
       }));
-      displayProducts(allProducts);
-      updateSummary(allProducts); // Add this line
+      filterProducts(); // Use filterProducts instead of displayProducts
     }
   });
 
-  // Search functionality
-  searchInput.addEventListener('input', (e) => {
-    const searchTerm = e.target.value.toLowerCase().trim();
-    
-    if (searchTerm === '') {
-      displayProducts(allProducts);
-      return;
-    }
+  // Add category filter event listener
+  categoryFilter.addEventListener('change', (e) => {
+    currentFilter = e.target.value;
+    filterProducts();
+  });
 
-    const filteredProducts = allProducts.filter(product => 
-      product.name.toLowerCase().includes(searchTerm) ||
-      product.category.toLowerCase().includes(searchTerm) ||
-      product.description?.toLowerCase().includes(searchTerm)
-    );
+  // Update search input event listener
+  searchInput.addEventListener('input', (e) => {
+    filterProducts();
+  });
+
+  // Combined filter function
+  function filterProducts() {
+    const searchTerm = searchInput.value.toLowerCase().trim();
+    const filteredProducts = allProducts.filter(product => {
+      const matchesSearch = 
+        product.name.toLowerCase().includes(searchTerm) ||
+        product.category.toLowerCase().includes(searchTerm) ||
+        product.description?.toLowerCase().includes(searchTerm);
+        
+      const matchesCategory = 
+        currentFilter === '' || product.category === currentFilter;
+        
+      return matchesSearch && matchesCategory;
+    });
 
     displayProducts(filteredProducts);
-  });
+    updateSummary(filteredProducts); // Update summary with filtered results
+  }
 
   function displayProducts(products) {
     tbody.innerHTML = '';

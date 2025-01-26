@@ -35,11 +35,22 @@
             </div>
           </header> 
           <div class="header-container">
-            <h1 class="h1stock">Stocks Products</h1>
+            <h1 class="h1stock">Stock Products</h1>
             <div class="header-controls">
               <div class="search-container">
                 <input type="text" id="searchProducts" placeholder="Search products...">
                 <span class="material-symbols-outlined search-icon">search</span>
+              </div>
+              <div class="category-filter">
+                <select id="categoryFilter">
+                  <option value="">All Categories</option>
+                  <option value="tshirt">T-shirt</option>
+                  <option value="bags">Bags</option>
+                  <option value="hat">Hat</option>
+                  <option value="pants">Pants</option>
+                  <option value="dress">Dress</option>
+                  <option value="shoes">Shoes</option>
+                </select>
               </div>
               <div class="excel-controls">
                 <button class="excel-btn add-btn" id="addNewBtn">
@@ -54,7 +65,6 @@
                   <span class="material-symbols-outlined">download</span>
                   Export
                 </button>
-                <input type="file" id="excelFileInput" accept=".xlsx" style="display: none">
               </div>
             </div>
           </div>

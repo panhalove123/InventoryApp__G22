@@ -17,8 +17,7 @@ body{
 
 .header-container {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
     padding: 0 25px;
     margin-bottom: 20px;
     margin-top: 25px;
@@ -74,6 +73,8 @@ body{
 .h1stock{
     font-size: 50px;
     margin: 0;
+    text-align: left;
+    margin-bottom: 25px;
 }
 
 table {
@@ -339,7 +340,7 @@ td.stock-cell, td.status-cell {
     }
 
     .h1stock {
-        font-size: 32px;
+        font-size: 36px;
     }
 
     .status-button {
@@ -363,6 +364,10 @@ td.stock-cell, td.status-cell {
     .search-container input {
         padding: 12px 45px 12px 15px;
         font-size: 14px;
+    }
+
+    .h1stock {
+        font-size: 28px;
     }
 }
 
@@ -1049,3 +1054,80 @@ td.status-cell {
     padding: 8px 16px;
   }
 }
+
+/* ...existing code... */
+
+.category-filter {
+  position: relative;
+  margin-right: 15px;
+  min-width: 180px;
+}
+
+.category-filter select {
+  width: 100%;
+  padding: 12px 40px 12px 20px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  font-size: 14px;
+  background: white;
+  color: #1a202c;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  appearance: none;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.category-filter select:hover {
+  border-color: #3182ce;
+  box-shadow: 0 4px 6px rgba(49, 130, 206, 0.1);
+}
+
+.category-filter select:focus {
+  outline: none;
+  border-color: #3182ce;
+  box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.1);
+}
+
+.category-filter::after {
+  content: '▼';
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #3182ce;
+  pointer-events: none;
+  font-size: 12px;
+  transition: transform 0.2s ease;
+}
+
+.category-filter:hover::after {
+  transform: translateY(-50%) translateY(2px);
+}
+
+.excel-controls {
+    margin-left: auto;
+    display: flex;
+    gap: 10px;
+}
+
+/* Responsive styles update */
+@media screen and (max-width: 992px) {
+    .header-controls {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .category-filter {
+        min-width: 200px;
+        flex: 1;
+    }
+
+    .excel-controls {
+        margin-left: 0;
+        width: 100%;
+        justify-content: flex-start;
+    }
+}
+
+/* ...existing code... */
