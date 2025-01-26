@@ -274,68 +274,122 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Add these functions to handle Excel operations
   window.importExcel = function() {
-    document.getElementById('excelFileInput').click();
+    // Create file input if it doesn't exist
+    let fileInput = document.getElementById('excelFileInput');
+    if (!fileInput) {
+      fileInput = document.createElement('input');
+      fileInput.type = 'file';
+      fileInput.id = 'excelFileInput';
+      fileInput.accept = '.xlsx, .xls';
+      fileInput.style.display = 'none';
+      document.body.appendChild(fileInput);
+    }
+    fileInput.click();
+
+    fileInput.addEventListener('change', async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      try {
+        const data = await file.arrayBuffer();
+        const workbook = read(data);
+        const worksheet = workbook.Sheets[workbook.SheetNames[0]];
+        const jsonData = utils.sheet_to_json(worksheet);
+
+        // Format the data
+        const formattedProducts = jsonData.map(row => ({
+          name: String(row.Name || row.name || ''),
+          category: String(row.Category || row.category || '').toLowerCase(),
+          quantity: parseInt(row.Quantity || row.quantity || 0),
+          description: String(row.Description || row.description || '')
+        }));
+
+        // Validate data
+        const validProducts = formattedProducts.filter(product => 
+          product.name && 
+          product.category && 
+          !isNaN(product.quantity)
+        );
+
+        if (validProducts.length === 0) {
+          alert('No valid products found in Excel file. Please check the format.');
+          return;
+        }
+
+        // Import to Firebase
+        const updates = {};
+        validProducts.forEach(product => {
+          const newKey = push(ref(database, 'products')).key;
+          updates[`products/${newKey}`] = product;
+        });
+
+        await update(ref(database), updates);
+        alert(`Successfully imported ${validProducts.length} products!`);
+
+      } catch (error) {
+        console.error('Import error:', error);
+        alert('Error importing file. Please check the format and try again.');
+      }
+
+      fileInput.value = ''; // Reset file input
+    });
   };
 
-  document.getElementById('excelFileInput').addEventListener('change', async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-
+  window.exportExcel = function() {
     try {
-      const data = await file.arrayBuffer();
-      const workbook = read(data);
-      const worksheet = workbook.Sheets[workbook.SheetNames[0]];
-      const products = utils.sheet_to_json(worksheet);
+      if (allProducts.length === 0) {
+        alert('No products to export');
+        return;
+      }
 
-      // Validate and format the data
-      const formattedProducts = products.map(product => ({
-        name: product.name || '',
-        category: product.category || '',
-        quantity: parseInt(product.quantity) || 0,
-        description: product.description || ''
+      // Format data for export
+      const exportData = allProducts.map(product => ({
+        Name: product.name,
+        Category: product.category,
+        Quantity: product.quantity,
+        Description: product.description || ''
       }));
 
-      // Import to Firebase
-      const updates = {};
-      formattedProducts.forEach(product => {
-        const newKey = push(ref(database, 'products')).key;
-        updates[`products/${newKey}`] = product;
+      // Create worksheet
+      const ws = utils.json_to_sheet(exportData);
+
+      // Set column widths
+      const colWidths = [
+        { wch: 30 }, // Name
+        { wch: 15 }, // Category
+        { wch: 10 }, // Quantity
+        { wch: 40 }  // Description
+      ];
+      ws['!cols'] = colWidths;
+
+      // Create workbook and add worksheet
+      const wb = utils.book_new();
+      utils.book_append_sheet(wb, ws, 'Inventory');
+
+      // Generate Excel file
+      const excelBuffer = write(wb, { 
+        bookType: 'xlsx', 
+        type: 'array',
+        bookSST: false
       });
+      
+      // Create and trigger download
+      const blob = new Blob([excelBuffer], { 
+        type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' 
+      });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `inventory_${new Date().toISOString().split('T')[0]}.xlsx`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
 
-      update(ref(database), updates)
-        .then(() => alert('Products imported successfully!'))
-        .catch(error => alert('Error importing products: ' + error.message));
     } catch (error) {
-      alert('Error reading Excel file: ' + error.message);
+      console.error('Export error:', error);
+      alert('Error exporting data. Please try again.');
     }
-
-    e.target.value = ''; // Reset file input
-  });
-
-  window.exportExcel = function() {
-    // Create worksheet from products data
-    const ws = utils.json_to_sheet(allProducts.map(product => ({
-      name: product.name,
-      category: product.category,
-      quantity: product.quantity,
-      description: product.description || ''
-    })));
-
-    // Create workbook and add worksheet
-    const wb = utils.book_new();
-    utils.book_append_sheet(wb, ws, 'Products');
-
-    // Generate Excel file
-    const excelBuffer = write(wb, { bookType: 'xlsx', type: 'array' });
-    
-    // Create blob and download
-    const blob = new Blob([excelBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = 'inventory_' + new Date().toISOString().split('T')[0] + '.xlsx';
-    link.click();
-    URL.revokeObjectURL(url);
   };
 
   // Modal functionality
@@ -377,6 +431,12 @@ document.addEventListener('DOMContentLoaded', function() {
       description: document.getElementById('description').value || ''
     };
 
+    // Validate input
+    if (!productData.name || !productData.category || isNaN(productData.quantity)) {
+      alert('Please fill in all required fields correctly');
+      return;
+    }
+
     try {
       // Generate a new key for the product
       const newProductRef = push(ref(database, 'products'));
@@ -388,11 +448,39 @@ document.addEventListener('DOMContentLoaded', function() {
       closeModal();
       addProductForm.reset();
       
+      // The product will automatically appear in the table because of the
+      // onValue listener we set up earlier
+      
       // Optional: Show success message
       alert('Product added successfully!');
     } catch (error) {
       console.error('Error adding product:', error);
       alert('Error adding product. Please try again.');
+    }
+  });
+
+  // Ensure the onValue listener is properly set up
+  onValue(productsRef, (snapshot) => {
+    allProducts = [];
+    tbody.innerHTML = '';
+    const products = snapshot.val();
+    
+    if (products) {
+      // Convert Firebase data to array with IDs
+      allProducts = Object.entries(products).map(([id, product]) => ({
+        ...product,
+        id: id
+      }));
+      
+      currentPage = 1; // Reset to first page when data changes
+      filterProducts(); // This will trigger displayProducts with the new data
+    } else {
+      // Handle case when there are no products
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="5" class="no-data">No products available</td>
+        </tr>
+      `;
     }
   });
 });
