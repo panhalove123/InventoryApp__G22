@@ -1131,3 +1131,269 @@ td.status-cell {
 }
 
 /* ...existing code... */
+
+/* Tablet-specific styles */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .main-content {
+    width: 100%;
+    padding: 0 20px;
+    margin-left: -25px;
+  }
+
+  .header-container {
+    padding: 0 15px;
+  }
+
+  .header-controls {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .search-container {
+    width: 100%;
+    max-width: none;
+    margin-bottom: 10px;
+  }
+
+  .category-filter {
+    width: 48%;
+    margin-right: 0;
+  }
+
+  .excel-controls {
+    width: 48%;
+    justify-content: flex-end;
+  }
+
+  .excel-btn {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  /* Table adjustments */
+  table {
+    width: 100%;
+    margin-left: 0;
+    font-size: 14px;
+  }
+
+  th, td {
+    padding: 12px 15px;
+  }
+
+  .status-button {
+    width: 90px;
+    font-size: 12px;
+  }
+
+  /* Bottom stats adjustments */
+  .bottom-stats {
+    padding: 15px;
+  }
+
+  .summary-items {
+    gap: 15px;
+  }
+
+  .summary-item {
+    padding: 15px;
+    min-width: 200px;
+  }
+
+  .quick-stats {
+    gap: 15px;
+  }
+
+  .stat-card {
+    padding: 15px;
+    min-width: 200px;
+  }
+
+  /* Modal adjustments */
+  .modal-content {
+    width: 80%;
+    max-width: 600px;
+    margin: 5% auto;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+  }
+}
+
+/* ...existing code... */
+
+/* Mobile-specific styles */
+@media screen and (max-width: 480px) {
+  .main-content {
+    width: 100%;
+    padding: 10px;
+    margin-left: -25px;
+  }
+
+  .header-container {
+    padding: 10px;
+    margin: 0;
+  }
+
+  .h1stock {
+    font-size: 24px;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+
+  .header-controls {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .search-container {
+    width: 100%;
+    margin: 0;
+  }
+
+  .category-filter {
+    width: 100%;
+    margin: 0;
+  }
+
+  .excel-controls {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+  }
+
+  .excel-btn {
+    width: calc(50% - 4px);
+    justify-content: center;
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  /* Table adjustments */
+  #stocks {
+    margin: 10px 0;
+    overflow-x: auto;
+  }
+
+  table {
+    width: 100%;
+    margin: 0;
+    font-size: 13px;
+  }
+
+  th, td {
+    padding: 8px;
+    white-space: nowrap;
+  }
+
+  td.name-cell {
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .status-button {
+    width: 80px;
+    font-size: 11px;
+    padding: 4px 8px;
+  }
+
+  .action-cell {
+    display: flex;
+    gap: 2px;
+  }
+
+  .edit-btn, .delete-btn {
+    width: 28px;
+    height: 28px;
+    padding: 4px;
+  }
+
+  /* Bottom stats adjustments */
+  .bottom-stats {
+    padding: 10px;
+  }
+
+  .summary-items {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .summary-item {
+    width: 100%;
+    min-width: unset;
+    padding: 12px;
+  }
+
+  .quick-stats {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .stat-card {
+    width: 100%;
+    min-width: unset;
+    padding: 12px;
+  }
+
+  /* Pagination adjustments */
+  .pagination-wrapper {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .entries-info {
+    font-size: 12px;
+    text-align: center;
+  }
+
+  .pagination {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Modal adjustments */
+  .modal-content {
+    width: 95%;
+    margin: 10px auto;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .modal-header h2 {
+    font-size: 18px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .modal-footer {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .modal-footer button {
+    min-width: unset;
+    flex: 1;
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  /* Category badges adjustment */
+  td:nth-child(2) span {
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+}
+
+/* ...existing code... */
